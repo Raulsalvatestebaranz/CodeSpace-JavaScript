@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Practice</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Changer</title>
+  <style>
+    body {
+      transition: background-color 0.5s ease, color 0.5s ease;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      margin: 0;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    #color-code {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      margin-top: 30px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-<body>
-  <h1>Hello JavaScript</h1>
-  <p>Click the button below to run a script:</p>
-
-  <button onclick="showMessage()">Click Me</button>
+  <h1>Click to Change the Background Color</h1>
+  <p id="color-code">Current color: #ffffff</p>
+  <button onclick="changeColor()">Change Color</button>
 
   <script src="script.js"></script>
-</body>
-
 </body>
 </html>
