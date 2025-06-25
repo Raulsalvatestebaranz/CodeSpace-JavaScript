@@ -1,0 +1,56 @@
+/* style.css */
+
+/* Reset body */
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Container for the two canvases (full‐viewport) */
+.scene-canvas {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Both canvases cover the container */
+.scene-canvas__canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Upper canvas: blurred + bright + screen blend */
+.scene-canvas__canvas--upper {
+  z-index: 1;
+  filter: blur(5px) brightness(200%);
+  mix-blend-mode: screen;
+}
+
+
+/* ============================== */
+/* SECTION: glass-shader */
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+/* ------------------------------ */
+.glass-shader {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ------------------------------ */
+.glass-shader__canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
