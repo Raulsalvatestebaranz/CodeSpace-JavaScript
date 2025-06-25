@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rock Paper Scissors - Countdown</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+      color: #00e5ff;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    }
+
+    .choices {
+      display: flex;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .choices button {
+      padding: 1rem 2rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #fff;
+      background-color: #1a73e8;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    .choices button:hover {
+      background-color: #0d47a1;
+      transform: scale(1.05);
+    }
+
+    #startBtn {
+      background-color: #ff4081;
+      margin-top: 1rem;
+    }
+
+    #startBtn:hover {
+      background-color: #c2185b;
+    }
+
+    #countdown {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #ffd740;
+      animation: pulse 1s infinite;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    #result {
+      margin-top: 1.5rem;
+      font-size: 1.5rem;
+      color: #a7ffeb;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🪨📄✂️ Rock, Paper, Scissors</h1>
+
+  <p id="countdown">Click "Start Game" to begin...</p>
+
+  <div class="choices">
+    <button onclick="selectMove('rock')">🪨 Rock</button>
+    <button onclick="selectMove('paper')">📄 Paper</button>
+    <button onclick="selectMove('scissors')">✂️ Scissors</button>
+  </div>
+
+  <button id="startBtn" onclick="startGame()">🎮 Start Game</button>
+
+  <p id="result"></p>
+
+  <script>
+    let playerMove = null;
+    let countdownValue = 3;
+    let countdownInterval;
+
+    function selectMove(move) {
+      playerMove = move;
+      document.getElementById("result").textContent = `You selected: ${move}`;
+    }
+
+    function startGame() {
+      playerMove = null;
+      countdownValue = 3;
+      document.getElementById("result").textContent = "";
+      document.getElementById("countdown").textContent = "Get ready... 3";
+      countdownInterval = setInterval(runCountdown, 1000);
+    }
+
+    function runCountdown() {
+      countdownValue--;
+      if (countdownValue > 0) {
+        document.getElementById("countdown").textContent = countdownValue;
+      } else {
+        clearInterval(countdownInterval);
+        playGame();
+      }
+    }
+
+    function playGame() {
+      const choices = ["rock", "paper", "scissors"];
+      const computerMove = choices[Math.floor(Math.random() * 3)];
+      const finalPlayerMove = playerMove || choices[Math.floor(Math.random() * 3)];
+
+      let resultText = `🧑 You: ${finalPlayerMove} | 🤖 Computer: ${computerMove} → `;
+
+      if (finalPlayerMove === computerMove) {
+        resultText += "It's a draw!";
+      } else if (
+        (finalPlayerMove === "rock" && computerMove === "scissors") ||
+        (finalPlayerMove === "paper" && computerMove === "rock") ||
+        (finalPlayerMove === "scissors" && computerMove === "paper")
+      ) {
+        resultText += "🎉 You win!";
+      } else {
+        resultText += "😢 You lose!";
+      }
+
+      document.getElementById("countdown").textContent = "⏱ Game Over!";
+      document.getElementById("result").textContent = resultText;
+    }
+  </script>
+
+</body>
+</html>
