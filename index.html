@@ -1,43 +1,1146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Color Changer</title>
-  <style>
-    body {
-      transition: background-color 0.5s ease, color 0.5s ease;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 100px;
-      margin: 0;
-      background-color: #ffffff;
-      color: #000000;
-    }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CodeSpace</title>
+  <meta name="description" content="Interactive HTML, Bootstrap, and Flexbox playground built by Raúl Salvat.">
 
-    h1 {
-      font-size: 2rem;
-    }
+  <!-- ✅ Fonts Optimization -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Poppins:wght@300;400;600;700&family=Roboto:ital@0;1&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Poppins:wght@300;400;600;700&family=Roboto:ital@0;1&display=swap" rel="stylesheet" media="all">
 
-    #color-code {
-      margin-top: 1rem;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
+  <!-- ✅ Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-    button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      margin-top: 30px;
-      cursor: pointer;
-    }
-  </style>
+  <!-- ✅ Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- ✅ Your Custom Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ✅ Deferred Scripts -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollSmoother.min.js"></script>
+  <script defer src="main-gsap.js"></script>
+  <script defer src="main.js"></script>
+  <script defer src="js/inject-layout.js"></script>
 </head>
-<body>
-  <h1>Click to Change the Background Color</h1>
-  <p id="color-code">Current color: #ffffff</p>
-  <button onclick="changeColor()">Change Color</button>
 
-  <script src="script.js"></script>
+<body class="d-flex flex-column min-vh-100 p-4">
+
+<main class="flex-grow-1 container py-5">
+  <div class="row gy-5">
+
+    <!-- ===================================================================================== -->
+    <!-- ✅ EXERCISE 1: innerHTML -->
+    <!-- ===================================================================================== -->
+    <div class="col-12">
+      <section class="text-center">
+        <h2 class="h4 mb-3">Exercise 1 – innerHTML</h2>
+        <p id="exercise1-output" class="text-success fw-semibold"></p>
+        <script>
+          document.getElementById("exercise1-output").innerHTML = "✅ Hello using innerHTML!";
+        </script>
+      </section>
+    </div>
+
+    <!-- ===================================================================================== -->
+    <!-- ✅ EXERCISE 2: alert + console.log -->
+    <!-- ===================================================================================== -->
+    <!--<div class="col-12">
+      <section class="text-center">
+        <h2 class="h4 mb-3">Exercise 2 – alert + console.log</h2>
+        <p>This one shows an alert and logs to the console.</p>
+        <script>
+          alert("✅ This is an alert from JS");
+          console.log("✅ Logged to console from JS");
+        </script>
+      </section>
+    </div>-->
+
+    <!-- ===================================================================================== -->
+    <!-- ✅ EXERCISE 3: Button click with function -->
+    <!-- ===================================================================================== -->
+    <div class="col-12">
+      <section class="text-center">
+        <h2 class="h4 mb-3">Exercise 3 – Button Click Event</h2>
+        <button class="btn btn-outline-dark" onclick="sayHello()">Click me!</button>
+        <p id="exercise3-output" class="mt-3 text-primary"></p>
+        <script>
+          function sayHello() {
+            document.getElementById("exercise3-output").innerHTML = "👋 Hello from the button!";
+            alert("✅ Button clicked!");
+            console.log("✅ Click event executed.");
+          }
+        </script>
+      </section>
+    </div>
+
+    <!-- ===================================================================================== -->
+    <!-- ✅ EXERCISE 4: prompt() input -->
+    <!-- ===================================================================================== -->
+    <div class="col-12">
+      <section class="text-center">
+        <h2 class="h4 mb-3">Exercise 4 – prompt() Input</h2>
+        <button class="btn btn-outline-primary" onclick="askName()">Enter Your Name</button>
+        <p id="exercise4-output" class="mt-3 text-success"></p>
+
+        <script>
+          function askName() {
+            const name = prompt("What is your name?");
+            const output = document.getElementById("exercise4-output");
+
+            if (name && name.trim() !== "") {
+              output.innerHTML = `Nice to meet you, <strong>${name}</strong>!`;
+            } else {
+              output.innerHTML = "You didn’t enter a name.";
+            }
+          }
+        </script>
+      </section>
+
+    </div>
+
+    <!-- ===================================================================================== -->
+    <!-- ✅ EXERCISE 5: prompt() + Number() + Output Age -->
+    <!-- ===================================================================================== -->
+    <div class="col-12">
+      <section class="text-center">
+        <h2 class="h4 mb-3">Exercise 5 – Age Prompt + Logic</h2>
+        <button class="btn btn-outline-secondary" onclick="askAge()">Enter Your Age</button>
+        <p id="exercise5-output" class="mt-3 text-warning"></p>
+        
+        <script>
+          function askAge() {
+            const ageInput = prompt("What is your age?");
+            const age = Number(ageInput);
+            const output = document.getElementById("exercise5-output");
+
+            if (!isNaN(age) && age > 0) {
+              if (age < 18) {
+                output.className = "mt-3 text-danger";
+                output.innerHTML = `You are a minor at ${age} years old.`;
+              } else {
+                output.className = "mt-3";
+                output.style.color = "#56ff87"; // custom green
+                output.innerHTML = `You are an adult at ${age} years old.`;
+              }
+            } else {
+              output.className = "mt-3 text-danger";
+              output.innerHTML = "❌ Please enter a valid age.";
+            }
+          }
+        </script>
+      </section>
+    </div>
+
+
+    <!-- ===================================================================================== -->
+    <!-- ✅ EXERCISE 6: Function Types Playground  -->
+    <!-- ===================================================================================== -->
+    <div class="col-12">
+      <section class="text-center">
+        <h2 class="h4 mb-3">Javascript Funtion Types</h2>
+
+        <button class="btn btn-outline-dark m-2" onclick="sayDeclaration()">Function Declaration</button>
+        <button class="btn btn-outline-primary m-2" onclick="sayExpression()">Function Expression</button>
+        <button class="btn btn-outline-success m-2" onclick="sayArrow()">Arrow Function</button>
+
+        <p id="funtion-output" class="mt-3 text-info fw-semibold"></p>
+
+        <script>
+          function sayDeclaration() {
+            document.getElementById("funtion-output").innerHTML = "✅ Function Declaration: Hello!";
+          }
+          const sayExpression = function() {
+            document.getElementById("funtion-output").innerHTML = "✅ Function Expression: Hello!";
+          };
+
+          const sayArrow = () => {
+            document.getElementById("funtion-output").innerHTML = "✅ Arrow Function: Hello!";
+          };
+        </script>
+      </section>
+    </div>
+
+
+<!-- ===================================================================================== -->
+<!-- ✅ EXERCISE 6 – typeof Inspector -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h4 mb-3">Exercise 6 – typeof Inspector</h2>
+    <button class="btn btn-outline-warning" onclick="checkType()">Check Type</button>
+    <p id="typeof-output" class="mt-3 text-muted"></p>
+
+    <script>
+  function checkType() {
+    const input = prompt("Enter something:");
+    let parsed;
+
+    try {
+      parsed = JSON.parse(input);
+    } catch {
+      parsed = input;
+    }
+
+    const result = typeof parsed;
+
+    document.getElementById("typeof-output").innerHTML = `
+      You entered: <code>${input}</code><br>
+      Type detected: <strong>${result}</strong>
+    `;
+  }
+</script>
+
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ EXERCISE 7 – Statements, Semicolons, and Comments -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h4 mb-3">Exercise 7 – Statements, Semicolons, and Comments</h2>
+    <p>Open the browser console to see how JavaScript Statements work</p>
+    <script>
+      // Declare a variable and assign values
+      let a = 10;
+      let b = 20;
+      let sum = a + b; // Calculate the sum
+
+      console.log("The sum of a + b is:", sum); // single-line comment
+
+            /*
+        ✅ Multi-line Comment Example
+        - This code creates 3 variables
+        - It adds the first two and stores the result
+        - Then it logs the result in the console
+      */
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ EXERCISE 8 – let vs const -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h4 mb-3">Exercise 8 – let vs const</h2>
+    
+    <button class="btn btn-outline-info" onclick="useLet()">Use let</button>
+    <button class="btn btn-outline-secondary" onclick="useConst()">Use const</button>
+
+    <p id="let-const-output" class="mt-3 text-muted"></p>
+
+    <script>
+      function useLet() {
+        let score = 10;
+        score = score + 5;
+        document.getElementById("let-const-output").innerHTML = 
+          `🔁 <code>let</code> allows reassignment. Final score: <strong>${score}</strong>`;
+      }
+
+      function useConst() {
+        try {
+          const lives = 3;
+          lives = 2; // This will throw an error
+        } catch (error) {
+          document.getElementById("let-const-output").innerHTML = 
+            `🚫 <code>const</code> cannot be reassigned. <br><small class="text-danger">${error}</small>`;
+        }
+      }
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ EXERCISE 9 – Scope Demonstration (Interactive Prompt) -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h4 mb-3">Exercise 9 – Scope of var, let, and const (Interactive)</h2>
+    <button class="btn btn-outline-info" onclick="scopeDemo()">Try Scope</button>
+    <p id="scope-output" class="mt-3 text-muted"></p>
+
+    <script>
+      function scopeDemo() {
+        const choice = prompt("Which variable do you want to test? Type: var, let, or const");
+
+        if (!choice) {
+          return;
+        }
+
+        if (choice === "var") {
+          var message = "Global scope with var";
+          if (true) {
+            var message = "Block scope modified var";
+          }
+          document.getElementById("scope-output").innerHTML =
+            `<code>var</code> is function-scoped. Final value: <strong>${message}</strong>`;
+        }
+
+        else if (choice === "let") {
+          let message = "Global scope with let";
+          if (true) {
+            let message = "Block scope with let";
+            console.log("Inside block:", message); // Will be different
+          }
+          document.getElementById("scope-output").innerHTML =
+            `<code>let</code> is block-scoped. Final value: <strong>${message}</strong>`;
+        }
+
+        else if (choice === "const") {
+          const message = "Global scope with const";
+          if (true) {
+            const message = "Block scope with const";
+            console.log("Inside block:", message); // Will be different
+          }
+          document.getElementById("scope-output").innerHTML =
+            `<code>const</code> is block-scoped. Final value: <strong>${message}</strong>`;
+        }
+
+        else {
+          document.getElementById("scope-output").innerHTML =
+            `<span class="text-danger">❌ Invalid input. Please type: var, let, or const.</span>`;
+        }
+      }
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ EXERCISE 10 – Reassignment Test: var, let, const -->
+<!-- ===================================================================================== -->
+<!-- Exercise 10 – Can I Change It (Interactive) -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h4 mb-3">Exercise 10 – Can I Change It?</h2>
+    <button class="btn btn-outline-success" onclick="changeLet()">Change let</button>
+    <button class="btn btn-outline-danger" onclick="changeConst()">Change const</button>
+    <p id="change-output" class="mt-3 text-muted"></p>
+
+    <script>
+      function changeLet() {
+        let score = 10;
+        const newScore = prompt("Enter new score for let:");
+        score = Number(newScore);
+        document.getElementById("change-output").innerHTML =
+          `✅ <code>let</code> was reassigned to ${score}`;
+      }
+
+      function changeConst() {
+        try {
+          const life = 3;
+          const newLife = prompt("Enter new value for const (will fail):");
+          life = Number(newLife); // ❌ This line will throw an error
+        } catch (error) {
+          document.getElementById("change-output").innerHTML =
+            `🚫 <code>const</code> cannot be reassigned.<br><small class="text-danger">${error}</small>`;
+        }
+      }
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ ACTIVITY 1 – Vanilla JS Basics: Arithmetic Operations -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h4 mb-3">Activity 1 – Vanilla JS Arithmetic Practice</h2>
+    <button class="btn btn-outline-primary" onclick="runActivity1()">Run Activity 1</button>
+    <pre id="activity1-output" class="mt-3 text-start bg-light p-3 rounded"></pre>
+
+    <script>
+      function runActivity1() {
+        // a. -5 + 8 * 6
+        const a = -5 + 8 * 6;
+        // Explanation: 8 * 6 = 48, then -5 + 48 = 43
+
+        // b. (55 + 9) % 9
+        const b = (55 + 9) % 9;
+        // Explanation: (55 + 9) = 64, 64 % 9 = 1
+
+        // c. 20 + -3 * 5 / 8
+        const c = 20 + (-3 * 5) / 8;
+        // Explanation: -3 * 5 = -15, -15 / 8 = -1.875, 20 + (-1.875) = 18.125
+
+        // d. 5 + 15 / 3 * 2 - 8 % 3
+        const d = 5 + (15 / 3) * 2 - (8 % 3);
+        // Explanation: 15 / 3 = 5, 5 * 2 = 10, 8 % 3 = 2, so 5 + 10 - 2 = 13
+
+        // Output all results
+        const output = `
+a. -5 + 8 * 6 = ${a}
+b. (55 + 9) % 9 = ${b}
+c. 20 + -3 * 5 / 8 = ${c}
+d. 5 + 15 / 3 * 2 - 8 % 3 = ${d}
+        `;
+
+        document.getElementById("activity1-output").textContent = output.trim();
+        console.log(output);
+      }
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ ACTIVITY 2 – Divide Two Numbers (User Input + Output) -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h4 mb-3">Activity 2 – Divide Two Numbers</h2>
+
+    <button class="btn btn-outline-primary" onclick="divideNumbers()">Divide Numbers</button>
+    <p id="activity2-output" class="mt-3 text-muted"></p>
+
+    <script>
+      // Function to divide two numbers based on user input
+      function divideNumbers() {
+        // Ask the user for the first number
+        const num1 = Number(prompt("Input the first number:"));
+
+        // Ask the user for the second number
+        const num2 = Number(prompt("Input the second number:"));
+
+        const output = document.getElementById("activity2-output");
+
+        // Check for valid numbers and prevent division by 0
+        if (!isNaN(num1) && !isNaN(num2) && num2 !== 0) {
+          const result = num1 / num2;
+          output.innerHTML = `The division of the first number and the second number is: <strong>${result}</strong>`;
+        } else {
+          output.className = "mt-3 text-danger";
+          output.innerHTML = "❌ Please enter valid numbers. Second number must not be zero.";
+        }
+      }
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ INTERACTIVE COMPARISON CHECKER – Section Version -->
+<!-- ===================================================================================== -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4">🧪 Interactive Comparison Checker</h2>
+
+    <div class="row justify-content-center mb-3">
+      <!-- Fixed left value -->
+      <div class="col-md-2">
+        <input type="text" id="leftValue" class="form-control text-center" value="5" readonly>
+      </div>
+
+      <!-- Operator selector -->
+      <div class="col-md-3">
+        <select id="operator" class="form-select text-center">
+          <option value="==">== (Equal)</option>
+          <option value="===">=== (Strict Equal)</option>
+          <option value="!=">!= (Not Equal)</option>
+          <option value="!==">!== (Strict Not Equal)</option>
+          <option value=">">&gt; (Greater Than)</option>
+          <option value=">=">&gt;= (Greater or Equal)</option>
+          <option value="<">&lt; (Less Than)</option>
+          <option value="<=">&lt;= (Less or Equal)</option>
+        </select>
+      </div>
+
+      <!-- User input field -->
+      <div class="col-md-3">
+        <input type="text" id="rightValue" class="form-control text-center" placeholder="Try '5', 10, 'abc'...">
+      </div>
+
+      <div class="col-md-2">
+        <button class="btn btn-success w-100" onclick="compareValues()">Compare</button>
+      </div>
+    </div>
+
+    <div id="comparisonResult" class="text-center result fs-5"></div>
+  </div>
+
+  <script>
+    function compareValues() {
+      const left = 5; // constant value for the left side
+      const operator = document.getElementById("operator").value;
+      const rightInput = document.getElementById("rightValue").value;
+      const output = document.getElementById("comparisonResult");
+
+      // Try to convert rightInput into real JS value
+      let right;
+      try {
+        right = JSON.parse(rightInput);
+      } catch {
+        right = rightInput;
+      }
+
+      // Perform comparison
+      let result;
+      switch (operator) {
+        case "==": result = left == right; break;
+        case "===": result = left === right; break;
+        case "!=": result = left != right; break;
+        case "!==": result = left !== right; break;
+        case ">": result = left > right; break;
+        case ">=": result = left >= right; break;
+        case "<": result = left < right; break;
+        case "<=": result = left <= right; break;
+        default: result = "Invalid operator";
+      }
+
+      // Display result
+      output.innerHTML = `
+        <p><strong>Result:</strong> 
+          <span class="${result ? 'text-success fw-bold' : 'text-danger fw-bold'}">${result}</span>
+        </p>
+        <p><code>${left} ${operator} ${typeof right === 'string' ? `'${right}'` : right}</code> → <strong>${result}</strong></p>
+        <p><em>Left Type:</em> <code>${typeof left}</code> | <em>Right Type:</em> <code>${typeof right}</code></p>
+      `;
+
+      // Alert popup if result is false
+      if (!result) {
+        alert("❌ The comparison is FALSE.\nTry changing the right value or operator.");
+      }
+    }
+  </script>
+</section>
+
+<section style="font-family: sans-serif; padding: 1rem; max-width: 600px;">
+  <h2>🤖 Logical Operator Tester</h2>
+
+  <label for="inputA">Condition A (true/false):</label>
+  <select id="inputA">
+    <option value="true">true</option>
+    <option value="false">false</option>
+  </select>
+
+  <br><br>
+  <label for="inputB">Condition B (true/false):</label>
+  <select id="inputB">
+    <option value="true">true</option>
+    <option value="false">false</option>
+  </select>
+
+  <br><br>
+  <label for="logicOp">Choose Operator:</label>
+  <select id="logicOp">
+    <option value="&&">AND (&&)</option>
+    <option value="||">OR (||)</option>
+    <option value="!A">NOT A (!A)</option>
+    <option value="!B">NOT B (!B)</option>
+  </select>
+
+  <br><br>
+  <button onclick="checkLogic()">Check</button>
+  <p id="logicResult"></p>
+
+  <script>
+    function checkLogic() {
+      const a = document.getElementById("inputA").value === "true";
+      const b = document.getElementById("inputB").value === "true";
+      const op = document.getElementById("logicOp").value;
+
+      let result, explanation;
+
+      switch (op) {
+        case "&&":
+          result = a && b;
+          explanation = `true && true = true, anything else = false`;
+          break;
+        case "||":
+          result = a || b;
+          explanation = `false || false = false, anything else = true`;
+          break;
+        case "!A":
+          result = !a;
+          explanation = `!${a} = ${result}`;
+          break;
+        case "!B":
+          result = !b;
+          explanation = `!${b} = ${result}`;
+          break;
+      }
+
+      document.getElementById("logicResult").innerHTML = `<strong>Result:</strong> ${result} <br>${explanation}`;
+    }
+  </script>
+</section>
+
+<!-- ================================ -->
+<!-- ✅ Section: Check if Positive -->
+<!-- ================================ -->
+<section class="text-center mt-4">
+  <h2 class="h5">Check if a Number is Positive</h2>
+
+  <button class="btn btn-primary mt-2" onclick="checkIfPositive()">Try it</button>
+
+  <p id="positive-output" class="mt-3 text-info"></p>
+
+  <script>
+    function checkIfPositive() {
+      const number = prompt("Enter a number:");
+
+      // Remember: prompt returns a string, so convert it to a number
+      const numericValue = Number(number);
+
+      if (numericValue > 0) {
+        document.getElementById("positive-output").textContent = "✅ The number is positive.";
+      }
+
+      document.getElementById("positive-output").textContent += " ✔️ Done checking.";
+    }
+  </script>
+</section>
+
+
+<!-- ================================ -->
+<!-- ✅ Section: If...Else Check -->
+<!-- ================================ -->
+<section class="text-center mt-4">
+  <h2 class="h5">Is the Number Positive or Negative/Zero?</h2>
+
+  <button class="btn btn-warning mt-2" onclick="checkNumber()">Try it</button>
+
+  <p id="result-output" class="mt-3 text-muted"></p>
+
+  <script>
+    function checkNumber() {
+      const userInput = prompt("Enter a number:");
+      const number = Number(userInput); // Convert string to number
+
+      if (number > 0) {
+        // ✅ If the number is greater than 0
+        document.getElementById("result-output").textContent = "✅ The number is positive.";
+      } else {
+        // ❗ If the number is 0 or negative
+        document.getElementById("result-output").textContent = "⚠️ The number is either negative or 0.";
+      }
+
+      // Footer note
+      document.getElementById("result-output").textContent += " ✔️ Condition checked!";
+    }
+  </script>
+</section>
+
+<!-- ================================ -->
+<!-- ✅ Section: if...else if...else Demo -->
+<!-- ================================ -->
+<section class="text-center mt-4">
+  <h2 class="h5">Check: Positive, Zero, or Negative</h2>
+
+  <button class="btn btn-info mt-2" onclick="checkValue()">Try it</button>
+
+  <p id="number-check-output" class="mt-3 text-muted"></p>
+
+  <script>
+    function checkValue() {
+      const userInput = prompt("Enter a number:");
+      const number = Number(userInput); // Convert input to a number
+
+      let resultText = "";
+
+      if (number > 0) {
+        // ✅ Positive number
+        resultText = "✅ The number is positive.";
+      } else if (number === 0) {
+        // 🟡 Exactly zero
+        resultText = "🟡 The number is zero.";
+      } else {
+        // 🔴 Negative number
+        resultText = "🔴 The number is negative.";
+      }
+
+      document.getElementById("number-check-output").textContent = resultText + " ✔️ Check complete.";
+    }
+  </script>
+</section>
+  <!-- ✅ SECTION: Nested If...Else Checker -->
+<section class="text-center p-4 bg-light border rounded">
+  <h3 class="mb-3">Is the number positive, zero, or negative?</h3>
+  <button onclick="nestedCheck()" class="btn btn-success">Check Number</button>
+  <p id="nested-result" class="mt-3 fw-bold"></p>
+
+  <script>
+    function nestedCheck() {
+      const input = prompt("Enter a number:");
+      const number = Number(input); // Convert input to number
+      let result = "";
+
+      if (number >= 0) {
+        if (number == 0) {
+          result = "🟡 You entered number 0.";
+        } else {
+          result = "✅ You entered a positive number.";
+        }
+      } else {
+        result = "🔴 You entered a negative number.";
+      }
+
+      document.getElementById("nested-result").textContent = result;
+      console.log("Nested if...else example evaluated.");
+    }
+  </script>
+</section>
+
+<!-- ✅ SECTION: Switch Statement – Number to Word -->
+<section class="text-center p-4 bg-light border rounded">
+  <h3 class="mb-3">Switch: Convert Number to Word</h3>
+  <button onclick="checkSwitch()" class="btn btn-primary">Try a Number</button>
+  <p id="switch-result" class="mt-3 fw-bold"></p>
+
+  <script>
+    function checkSwitch() {
+      const input = prompt("Enter a number (1–3):");
+      const number = Number(input);
+      let result;
+
+      switch (number) {
+        case 1:
+          result = "You chose ONE.";
+          break;
+        case 2:
+          result = "You chose TWO.";
+          break;
+        case 3:
+          result = "You chose THREE.";
+          break;
+        default:
+          result = "⚠️ Not a valid option. Try 1, 2, or 3.";
+      }
+
+      document.getElementById("switch-result").textContent = result;
+    }
+  </script>
+</section>
+
+<!-- ✅ SECTION: Simple Switch Statement -->
+<section class="text-center p-4 bg-light border rounded">
+  <h3 class="mb-3">Switch Example – Simple Number Conversion</h3>
+  <button onmouseover="simpleSwitchExample()" class="btn btn-success">Check the Value</button>
+  <p id="switch-output" class="mt-3 fw-bold text-primary"></p>
+
+  <script>
+    function simpleSwitchExample() {
+      let a = prompt("Enter a number (try 1 or 2):");
+      a = Number(a); // convert input to a number for switch
+      let result;
+
+      switch (a) {
+        case 1:
+          result = 'one';
+          break;
+        case 2:
+          result = 'two';
+          break;
+        default:
+          result = 'not found';
+          break;
+      }
+
+      document.getElementById("switch-output").textContent = `The value is ${result}`;
+    }
+  </script>
+</section>
+
+<section class="container py-4">
+  <h2>🔢 Check Number Order</h2>
+  <button onclick="checkOrder()" class="btn btn-primary mb-3">Enter Numbers</button>
+  <div id="result" style="font-weight: bold;"></div>
+
+  <script>
+    function checkOrder() {
+      // Ask the user for three numbers
+      const num1 = parseInt(prompt("Input first number:"));
+      const num2 = parseInt(prompt("Input second number:"));
+      const num3 = parseInt(prompt("Input third number:"));
+
+      // Initialize the result message
+      let message = "";
+
+      // Check if numbers are in increasing order
+      if (num1 < num2 && num2 < num3) {
+        message = "Increasing order.";
+      }
+      // Check if numbers are in decreasing order
+      else if (num1 > num2 && num2 > num3) {
+        message = "Decreasing order.";
+      }
+      // Otherwise, it's neither
+      else {
+        message = "Neither increasing nor decreasing order.";
+      }
+
+      // Display result on the page
+      document.getElementById("result").innerText = message;
+    }
+  </script>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- ✅ SECTION 1 – for Loop Basics: Repeating a Message -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h5 mb-3">JS Loop – Print Message 5 Times</h2>
+    <button class="btn btn-primary" onclick="printMessage()">Click to Loop</button>
+    <div id="loop-output" class="mt-3 text-muted"></div>
+
+    <script>
+      function printMessage() {
+        const n = 5;
+        let output = '';
+        
+        // Loop from 1 to 5
+        for (let i = 1; i <= n; i++) {
+          output += `${i}. I love JavaScript<br>`;
+        }
+
+        // Display result in the browser
+        document.getElementById("loop-output").innerHTML = output;
+      }
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ SECTION 2 – for Loop: Display Numbers from 1 to 5 -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h5 mb-3">JS Loop – Count from 1 to 7</h2>
+    <button class="btn btn-success" onclick="countToSeven()">Show Numbers</button>
+    <div id="count-output" class="mt-3 text-muted"></div>
+
+    <script>
+      function countToSeven() {
+        const n = 7;
+        let output = '';
+
+        // Loop from 1 to 5 and collect numbers
+        for (let i = 1; i <= n; i++) {
+          output += i + '<br>';
+        }
+
+        // Display the result in the HTML
+        document.getElementById("count-output").innerHTML = output;
+      }
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ SECTION 3 – for Loop: Sum of Natural Numbers (1 to 100) -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h5 mb-3">JS Loop – Sum of 1 to 100</h2>
+    <button class="btn btn-primary" onclick="sumNaturalNumbers()">Calculate Sum</button>
+    <div id="sum-output" class="mt-3 text-muted"></div>
+
+    <script>
+      function sumNaturalNumbers() {
+        let sum = 0;
+        const n = 200;
+
+        // Loop from 1 to 100 and add each number to sum
+        for (let i = 1; i <= n; i++) {
+          sum += i; // same as: sum = sum + i
+        }
+
+        // Show the result in the HTML
+        document.getElementById("sum-output").innerHTML = `The sum of numbers from 1 to 100 is: <strong>${sum}</strong>`;
+      }
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ SECTION – for Loop: Print Numbers from 1 to 10 -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h5 mb-3">JS Loop – Print 1 to 10</h2>
+    <button class="btn btn-success" onclick="printNumbers()">Show Numbers</button>
+    <div id="print-output" class="mt-3 text-muted"></div>
+
+    <script>
+      function printNumbers() {
+        let result = "";
+
+        // Start at 1, stop at 10, increase by 1 each time
+        for (let i = 1; i <= 10; i++) {
+          result += `Number: ${i} <br>`; // Add each number to the result string
+        }
+
+        // Show the list of numbers in the HTML
+        document.getElementById("print-output").innerHTML = result;
+      }
+    </script>
+  </section>
+</div>
+<!-- ===================================================================================== -->
+<!-- ✅ SECTION – JS While Loop: Count 1 to 5 -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h5 mb-3">JS While Loop – Count from 1 to 5</h2>
+    <button class="btn btn-secondary" onclick="countToFive()">Start Counting</button>
+    <div id="while-output" class="mt-3 text-muted"></div>
+
+    <script>
+      function countToFive() {
+        let i = 1; // Start with 1
+        let output = "";
+
+        while (i <= 5) {
+          output += `Number is ${i} <br>`;
+          i++; // Increase i by 1
+        }
+
+        document.getElementById("while-output").innerHTML = output;
+      }
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ SECTION – JS Do While Loop: Count from 1 to 5 -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h5 mb-3">JS Do While Loop – Count from 1 to 5</h2>
+    <button class="btn btn-primary" onclick="doWhileCount()">Run Loop</button>
+    <div id="dowhile-output" class="mt-3 text-success"></div>
+
+    <script>
+      function doWhileCount() {
+        let i = 1;
+        let result = "";
+
+        do {
+          result += `Number is ${i} <br>`;
+          i++;
+        } while (i <= 5);
+
+        document.getElementById("dowhile-output").innerHTML = result;
+      }
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ SECTION – While vs Do...While Example -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h5 mb-3">🔁 While vs Do...While Example</h2>
+
+    <label for="numInput">Enter a number GREATER than 10:</label>
+    <input type="number" id="numInput" class="form-control w-25 mx-auto my-2" />
+
+    <div class="d-flex justify-content-center gap-3 mb-3">
+      <button class="btn btn-outline-primary" onclick="testWhile()">Run while loop</button>
+      <button class="btn btn-outline-success" onclick="testDoWhile()">Run do...while loop</button>
+    </div>
+
+    <div class="mt-3 text-start px-4">
+      <p><strong>Output (while loop):</strong></p>
+      <pre id="outputWhile" class="bg-light p-2 rounded border"></pre>
+
+      <p><strong>Output (do...while loop):</strong></p>
+      <pre id="outputDoWhile" class="bg-light p-2 rounded border"></pre>
+    </div>
+  </section>
+</div>
+
+<script>
+  function testWhile() {
+    let number = parseInt(document.getElementById("numInput").value);
+    let output = "";
+    let count = 0;
+
+    while (number > 10) {
+      count++;
+      output += `✅ Loop ran. Count = ${count}\n`;
+      number--;
+    }
+
+    if (count === 0) output = "❌ Condition was false. Loop did NOT run.";
+
+    document.getElementById("outputWhile").innerText = output;
+  }
+
+  function testDoWhile() {
+    let number = parseInt(document.getElementById("numInput").value);
+    let output = "";
+    let count = 0;
+
+    do {
+      count++;
+      output += `✅ Loop ran. Count = ${count}\n`;
+      number--;
+    } while (number > 10);
+
+    document.getElementById("outputDoWhile").innerText = output;
+  }
+</script>
+
+<!-- ===================================================================================== -->
+<!-- ✅ SECTION – Sum Positive Numbers (While Loop) -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h5 mb-3">➕ Sum Positive Numbers (While Loop)</h2>
+
+    <p>Keep entering numbers. Enter a <strong>negative number to stop</strong>.</p>
+
+    <input type="number" id="whileInput" class="form-control w-25 mx-auto my-2" />
+    
+    <div class="d-flex justify-content-center gap-3 mb-3">
+      <button class="btn btn-outline-warning" onclick="addNumber()">Add Number</button>
+      <button class="btn btn-outline-danger" onclick="resetSum()">Reset</button>
+    </div>
+
+    <p class="mt-3"><strong>Current Sum:</strong> <span id="whileSum">0</span></p>
+    <p><strong>Status:</strong> <span id="whileStatus">Waiting for input...</span></p>
+  </section>
+</div>
+
+<script>
+  let total = 0;
+  let active = true;
+
+  function addNumber() {
+    if (!active) return;
+
+    const input = parseInt(document.getElementById("whileInput").value);
+    const status = document.getElementById("whileStatus");
+
+    if (input >= 0) {
+      total += input;
+      document.getElementById("whileSum").innerText = total;
+      status.innerText = `✅ Added ${input}`;
+    } else {
+      active = false;
+      status.innerText = "❌ Negative number entered. Loop stopped.";
+    }
+
+    document.getElementById("whileInput").value = "";
+  }
+
+  function resetSum() {
+    total = 0;
+    active = true;
+    document.getElementById("whileSum").innerText = 0;
+    document.getElementById("whileStatus").innerText = "Reset. Waiting for input...";
+  }
+</script>
+
+
+<!-- ===================================================================================== -->
+<!-- ✅ SECTION – JS Loop: Odd or Even from 0 to 15 -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h5 mb-3">JS Loop – Check Odd or Even (0 to 15)</h2>
+    <button class="btn btn-info" onclick="checkOddEven()">Check Now</button>
+
+    <div id="oddEvenOutput" class="mt-4 text-start"></div>
+
+    <script>
+      function checkOddEven() {
+        let output = "<ul class='list-unstyled'>";
+        for (let i = 0; i <= 15; i++) {
+          if (i % 2 === 0) {
+            output += `<li>${i} is <strong class="text-primary">even</strong></li>`;
+          } else {
+            output += `<li>${i} is <strong class="text-danger">odd</strong></li>`;
+          }
+        }
+        output += "</ul>";
+        document.getElementById("oddEvenOutput").innerHTML = output;
+      }
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ SECTION – JS Loop: Multiplication Table (1 to 10) -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h5 mb-3">JS Loop – Multiplication Table (1 to 10)</h2>
+
+    <label for="multiInput" class="form-label">Enter a number:</label>
+    <input type="number" id="multiInput" class="form-control w-25 mx-auto mb-3" />
+
+    <button class="btn btn-success" onclick="generateTable()">Generate Table</button>
+
+    <div id="multiTableOutput" class="mt-4 text-start"></div>
+
+    <script>
+      function generateTable() {
+        const number = parseInt(document.getElementById("multiInput").value);
+        let output = "";
+
+        if (isNaN(number)) {
+          output = `<p class="text-danger">❌ Please enter a valid number.</p>`;
+        } else {
+          output = "<ul class='list-unstyled'>";
+          for (let i = 1; i <= 10; i++) {
+            output += `<li>${number} × ${i} = <strong>${number * i}</strong></li>`;
+          }
+          output += "</ul>";
+        }
+
+        document.getElementById("multiTableOutput").innerHTML = output;
+      }
+    </script>
+  </section>
+</div>
+
+<!-- ===================================================================================== -->
+<!-- ✅ SECTION – JS Loop: Even or Odd (0 to 15) -->
+<!-- ===================================================================================== -->
+<div class="col-12">
+  <section class="text-center">
+    <h2 class="h5 mb-3">JS Loop – Even or Odd (0 to 15)</h2>
+
+    <button class="btn btn-primary" onclick="checkEvenOdd()">Run Loop</button>
+
+    <div id="evenOddOutput" class="mt-4 text-start"></div>
+
+    <script>
+      function checkEvenOdd() {
+        let output = "<ul class='list-unstyled'>";
+        for (let i = 0; i <= 15; i++) {
+          const type = i % 2 === 0 ? "even" : "odd";
+          output += `<li>${i} is <strong>${type}</strong></li>`;
+        }
+        output += "</ul>";
+
+        document.getElementById("evenOddOutput").innerHTML = output;
+      }
+    </script>
+  </section>
+</div>
+
+
+
+</main>
+
+
+
 </body>
+
+
 </html>
